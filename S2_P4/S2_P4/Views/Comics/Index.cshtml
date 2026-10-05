@@ -1,0 +1,44 @@
+﻿@model IEnumerable<S2_P4.Models.Comic>
+
+@{
+    ViewBag.Title = "Catálogo de Comics";
+}
+
+<h2>Catálogo de Comics</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TITULO</th>
+                <th>AUTOR</th>
+                <th>EDITORIAL</th>
+                <th>PAGINAS</th>
+                <th>PRECIO</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var comics in Model)
+            {
+                <tr>
+                    <td>@comics.id</td>
+                    <td>@comics.titulo</td>
+                    <td>@comics.autor</td>
+                    <td>@comics.editorial</td>
+                    <td>@comics.pags</td>
+                    <td>@comics.precio.ToString("C")</td>
+                </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+}
+else
+{
+    <p>No hay el texto.....</p>
+}

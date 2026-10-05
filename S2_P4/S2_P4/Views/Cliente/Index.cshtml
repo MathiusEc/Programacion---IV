@@ -1,0 +1,44 @@
+﻿@model IEnumerable<S2_P4.Models.Cliente>
+
+@{
+    ViewBag.Title = "Catálogo de Clientes";
+}
+
+<h2>Catálogo de Clientes</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>CEDULA</th>
+                <th>DIRECCION</th>
+                <th>EDAD</th>
+                <th>MAIL</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.id</td>
+                    <td>@cliente.nombre</td>
+                    <td>@cliente.cedula</td>
+                    <td>@cliente.direccion</td>
+                    <td>@cliente.edad</td>
+                    <td>@cliente.mail</td>
+                </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+}
+else
+{
+    <p>No hay el texto.....</p>
+}

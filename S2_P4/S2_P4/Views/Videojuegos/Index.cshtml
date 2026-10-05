@@ -1,0 +1,41 @@
+﻿@model IEnumerable<S2_P4.Models.Videojuego>
+
+@{
+    ViewBag.Title = "Catálogo de Videojuegos";
+}
+
+<h2>Catálogo de Videojuegos</h2>
+
+ @if (Model!=null && Model.Any())
+{
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TITULO</th>
+                <th>PLATAFORMA</th>
+                <th>PRECIO</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach(var juego in Model)
+            {
+               <tr>
+                   <td>@juego.id</td>
+                   <td>@juego.titulo</td>
+                   <td>@juego.plataforma</td>
+                   <td>@juego.precio.ToString("C")</td>
+
+               </tr> 
+            }
+
+        </tbody>
+
+
+    </table>
+}
+else
+{
+    <p>No hay el texto.....</p>
+}
