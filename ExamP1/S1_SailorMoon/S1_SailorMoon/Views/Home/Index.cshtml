@@ -1,0 +1,102 @@
+﻿@using S1_SailorMoon.Models
+@{
+    ViewBag.Title = "Página Principal";
+
+    var senshis = ViewBag.SailorSenshis as List<SailorSenshi> ?? new List<SailorSenshi>();
+    var aliados = ViewBag.Aliados as List<Aliado> ?? new List<Aliado>();
+    var senshiPorId = senshis.ToDictionary(s => s.Id, s => s.Nombre);
+}
+
+<main class="container mt-4">
+    <h1 class="mb-4">Universo Sailor Moon</h1>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <span>Sailor Senshis</span>
+            @Html.ActionLink("Añadir Sailor Senshi", "Create", "SailorSenshis", null, new { @class = "btn btn-sm btn-light" })
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Planeta</th>
+                        <th>Nivel de poder</th>
+                        <th>Habilidad especial</th>
+                        <th style="width: 240px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!senshis.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">No hay Sailor Senshis registradas.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in senshis)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                                <td>@item.Planeta</td>
+                                <td>@item.NivelPoder</td>
+                                <td>@item.HabilidadEspecial</td>
+                                <td>
+                                    @Html.ActionLink("Detalle", "Details", "SailorSenshis", new { id = item.Id }, new { @class = "btn btn-sm btn-info me-1" })
+                                    @Html.ActionLink("Editar", "Edit", "SailorSenshis", new { id = item.Id }, new { @class = "btn btn-sm btn-warning me-1" })
+                                    @Html.ActionLink("Eliminar", "Delete", "SailorSenshis", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <span>Aliados</span>
+            @Html.ActionLink("Añadir Aliado", "Create", "Aliadoes", null, new { @class = "btn btn-sm btn-light" })
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Edad</th>
+                        <th>Sailor Senshi asociada</th>
+                        <th style="width: 240px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!aliados.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">No hay aliados registrados.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in aliados)
+                        {
+                            <tr>
+                                <td>@item.NombreAliado</td>
+                                <td>@item.Tipo</td>
+                                <td>@item.Edad</td>
+                                <td>@(senshiPorId.ContainsKey(item.SailorSenshiId) ? senshiPorId[item.SailorSenshiId] : "No asignada")</td>
+                                <td>
+                                    @Html.ActionLink("Detalle", "Details", "Aliadoes", new { id = item.Id }, new { @class = "btn btn-sm btn-info me-1" })
+                                    @Html.ActionLink("Editar", "Edit", "Aliadoes", new { id = item.Id }, new { @class = "btn btn-sm btn-warning me-1" })
+                                    @Html.ActionLink("Eliminar", "Delete", "Aliadoes", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
