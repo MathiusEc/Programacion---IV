@@ -1,0 +1,59 @@
+﻿### 1. GET · Obtener todos los domadores
+GET https://localhost:44352/api/domadores
+
+
+### 2. POST · Crear domador (JSON)
+POST https://localhost:44352/api/domadores
+Content-Type: application/json
+
+{
+  "Nombre": "Tai Kamiya",
+  "Edad": 11
+}
+
+### 3. POST · Crear domador (XML)
+POST https://localhost:44352/api/domadores
+Content-Type: application/xml
+
+<Domador><Nombre>Sora</Nombre><Edad>11</Edad></Domador>
+
+### 4. PUT · Actualizar domador con id=1
+PUT https://localhost:44352/api/domadores/1
+Content-Type: application/json
+
+{
+  "DomadorId": 1,
+  "Nombre": "Tai Kamiya",
+  "Edad": 12
+}
+
+### 5. DELETE · Eliminar domador con id=1
+DELETE https://localhost:44352/api/domadores/1
+
+
+### --- PRUEBAS ADICIONALES PARA DIGIMON ---
+
+### 6. GET · Obtener todos los digimones
+GET https://localhost:44352/api/digimon
+
+### 7. POST · Crear digimon (JSON)
+POST https://localhost:44352/api/digimon
+Content-Type: application/json
+
+{
+  "Nombre": "Agumon",
+  "Etapa": "Novato"
+}
+
+### 8. PUT · Actualizar digimon con id=1
+PUT https://localhost:44352/api/digimon/1
+Content-Type: application/json
+
+{
+  "DigimonId": 1,
+  "Nombre": "Agumon",
+  "Etapa": "Campeón"
+}
+
+### 9. DELETE · Eliminar digimon con id=1
+DELETE https://localhost:44352/api/digimon/1
