@@ -296,6 +296,28 @@ The SDK-style project builds with the .NET CLI:
 dotnet build S2_P4/S2_P4.slnx
 ```
 
+### Legacy Project First Build (Roslyn)
+
+All exercises except `S2_P4` target .NET Framework and restore NuGet packages through `packages.config`. On a fresh clone, Visual Studio may restore the packages but fail to copy the Roslyn compiler into `bin\roslyn\`, producing this build error:
+
+```text
+Could not find a part of the path ...\bin\roslyn\csc.exe
+```
+
+Fix it once per clone:
+
+1. Open the exercise's `.slnx` solution in Visual Studio.
+2. Open **Tools → NuGet Package Manager → Package Manager Console**.
+3. Run:
+
+   ```powershell
+   Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -Reinstall
+   ```
+
+4. Rebuild the solution (`Ctrl + Shift + B`) and run it with IIS Express.
+
+This applies to `S1-P4`, `S3_P4`, `S6_P4`, `S7_P4` and `ExamP1`. It does not apply to `S2_P4`. For `S3_P4` and `ExamP1`, run `Update-Database` after the rebuild to create the LocalDB database; `S7_P4` creates its database automatically on the first API request.
+
 ### Database Setup
 
 | Project | How the database is created | Connection string |
@@ -333,11 +355,11 @@ For the two migrated projects, open the Package Manager Console, select the web 
 
 <div align="center">
 
-*"No me importa si no soy la mejor, ¡yo seré la mejor para mí!"*
+*"I want you to praise me for being alive!"*
 
-**— Hitori Gotou**
+**— Nico Robin**
 
-<img src="https://i.pinimg.com/736x/25/45/86/254586abcd1015a44372c32f18b6ca35.jpg" alt="Inspiration" width="280">
+<img src="https://i.pinimg.com/736x/77/ae/6e/77ae6ee3b4095a643d6f419220fa2d16.jpg" alt="Inspiration" width="280">
 
 *Document updated on November 14, 2026*
 
